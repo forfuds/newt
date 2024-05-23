@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+#canvas {
+    border: 1px solid black;
+}
+
+#download-link {
+    font-size: 20px;
+    color: blue;
+    text-decoration: underline;
+}
