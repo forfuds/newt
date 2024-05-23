@@ -1,10 +1,10 @@
 document.getElementById('process-button').addEventListener('click', () => {
     const imageUpload = document.getElementById('image-upload').files[0];
-    const watermarkUpload = document.getElementById('watermark-upload').files[0];
 
-    if (imageUpload && watermarkUpload) {
+    if (imageUpload) {
         const image = new Image();
         const watermark = new Image();
+        watermark.src = 'images/watermark.png';  // 固定的水印图片路径
 
         image.onload = () => {
             const canvas = document.getElementById('canvas');
@@ -24,12 +24,6 @@ document.getElementById('process-button').addEventListener('click', () => {
                 document.getElementById('download-link').href = canvas.toDataURL();
                 document.getElementById('download-link').download = 'watermarked-image.png';
             };
-
-            const watermarkReader = new FileReader();
-            watermarkReader.onload = (e) => {
-                watermark.src = e.target.result;
-            };
-            watermarkReader.readAsDataURL(watermarkUpload);
         };
 
         const imageReader = new FileReader();
@@ -38,6 +32,6 @@ document.getElementById('process-button').addEventListener('click', () => {
         };
         imageReader.readAsDataURL(imageUpload);
     } else {
-        alert('Please upload both an image and a watermark.');
+        alert('Please upload an image.');
     }
 });
