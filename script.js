@@ -2,6 +2,9 @@ document.getElementById('process-button').addEventListener('click', () => {
     const imageUpload = document.getElementById('image-upload').files[0];
 
     if (imageUpload) {
+        // 显示加载提示
+        document.getElementById('loading-message').style.display = 'block';
+
         const image = new Image();
         const watermark = new Image();
         watermark.src = 'images/watermark.png';  // 固定的水印图片路径
@@ -20,6 +23,10 @@ document.getElementById('process-button').addEventListener('click', () => {
                 ctx.globalAlpha = 0.5;
                 ctx.drawImage(watermark, image.width - watermarkWidth - 10, image.height - watermarkHeight - 10, watermarkWidth, watermarkHeight);
 
+                // 隐藏加载提示
+                document.getElementById('loading-message').style.display = 'none';
+
+                // 显示 canvas 和下载链接
                 document.getElementById('canvas').style.display = 'block';
                 document.getElementById('download-link').style.display = 'block';
                 document.getElementById('download-link').href = canvas.toDataURL();
