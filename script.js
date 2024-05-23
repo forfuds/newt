@@ -20,9 +20,14 @@ document.getElementById('process-button').addEventListener('click', () => {
                 ctx.globalAlpha = 0.5;
                 ctx.drawImage(watermark, image.width - watermarkWidth - 10, image.height - watermarkHeight - 10, watermarkWidth, watermarkHeight);
 
+                document.getElementById('canvas').style.display = 'block';
                 document.getElementById('download-link').style.display = 'block';
                 document.getElementById('download-link').href = canvas.toDataURL();
                 document.getElementById('download-link').download = 'watermarked-image.png';
+            };
+
+            watermark.onerror = () => {
+                alert('Failed to load watermark image.');
             };
         };
 
