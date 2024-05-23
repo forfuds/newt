@@ -3,7 +3,10 @@ document.getElementById('process-button').addEventListener('click', () => {
 
     if (imageUpload) {
         // 显示加载提示
-        document.getElementById('loading-message').style.display = 'block';
+        const loadingMessage = document.getElementById('loading-message');
+        if (loadingMessage) {
+            loadingMessage.style.display = 'block';
+        }
 
         const image = new Image();
         const watermark = new Image();
@@ -24,7 +27,9 @@ document.getElementById('process-button').addEventListener('click', () => {
                 ctx.drawImage(watermark, image.width - watermarkWidth - 10, image.height - watermarkHeight - 10, watermarkWidth, watermarkHeight);
 
                 // 隐藏加载提示
-                document.getElementById('loading-message').style.display = 'none';
+                if (loadingMessage) {
+                    loadingMessage.style.display = 'none';
+                }
 
                 // 显示 canvas 和下载链接
                 document.getElementById('canvas').style.display = 'block';
