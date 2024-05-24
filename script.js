@@ -14,18 +14,25 @@ document.getElementById('process-button').addEventListener('click', () => {
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
 
-            canvas.width = image.width;
-            canvas.height = image.height;
-            ctx.drawImage(image, 0, 0);
+            // 获取屏幕的宽度，以便缩放图像
+            const screenWidth = window.innerWidth;
+            const scaleFactor = screenWidth / image.width;
+
+            const scaledWidth = image.width * scaleFactor;
+            const scaledHeight = image.height * scaleFactor;
+
+            canvas.width = scaledWidth;
+            canvas.height = scaledHeight;
+            ctx.drawImage(image, 0, 0, scaledWidth, scaledHeight);
 
             const watermark = new Image();
             watermark.src = 'images/watermark.png';  // 固定的水印图片路径
 
             watermark.onload = () => {
-                const watermarkWidth = image.width / 4;
+                const watermarkWidth = scaledWidth / 4;
                 const watermarkHeight = (watermark.height / watermark.width) * watermarkWidth;
                 ctx.globalAlpha = 0.5;
-                ctx.drawImage(watermark, image.width - watermarkWidth - 10, image.height - watermarkHeight - 10, watermarkWidth, watermarkHeight);
+                ctx.drawImage(watermark, scaledWidth - watermarkWidth - 10, scaledHeight - watermarkHeight - 10, watermarkWidth, watermarkHeight);
 
                 // 隐藏加载提示
                 if (loadingMessage) {
