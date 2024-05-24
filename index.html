@@ -4,21 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Watermark</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Image Watermark Application</h1>
     <form id="upload-form">
         <label for="image-upload">Upload Image:</label>
         <input type="file" id="image-upload" accept="image/*" required><br><br>
-
         <button type="button" id="process-button">Process</button>
     </form>
     <br>
+    <div id="loading-message" style="display: none;">Loading...</div>
     <canvas id="canvas" style="display:none;"></canvas>
     <br>
     <a id="download-link" style="display:none;">Download Image</a>
-
     <script src="script.js"></script>
 </body>
 </html>
