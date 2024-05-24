@@ -39,11 +39,22 @@ document.getElementById('process-button').addEventListener('click', () => {
                     loadingMessage.style.display = 'none';
                 }
 
+                // 获取当前日期和时间
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const day = String(now.getDate()).padStart(2, '0');
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const dateTime = `${year}${month}${day}_${hours}${minutes}${seconds}`;
+
                 // 显示 canvas 和下载链接
                 document.getElementById('canvas').style.display = 'block';
-                document.getElementById('download-link').style.display = 'block';
-                document.getElementById('download-link').href = canvas.toDataURL();
-                document.getElementById('download-link').download = 'watermarked-image.png';
+                const downloadLink = document.getElementById('download-link');
+                downloadLink.style.display = 'block';
+                downloadLink.href = canvas.toDataURL();
+                downloadLink.download = `watermarked_image_${dateTime}.png`;
 
                 // 清除文件输入字段
                 document.getElementById('image-upload').value = '';
