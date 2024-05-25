@@ -31,7 +31,7 @@ document.getElementById('process-button').addEventListener('click', () => {
             watermark.onload = () => {
                 const watermarkWidth = scaledWidth / 4;
                 const watermarkHeight = (watermark.height / watermark.width) * watermarkWidth;
-                ctx.globalAlpha = 0.5;
+                ctx.globalAlpha = 0.9;
                 ctx.drawImage(watermark, scaledWidth - watermarkWidth - 10, scaledHeight - watermarkHeight - 10, watermarkWidth, watermarkHeight);
 
                 // 隐藏加载提示
